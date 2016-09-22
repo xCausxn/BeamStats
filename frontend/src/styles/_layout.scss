@@ -1,0 +1,128 @@
+$queries: (
+    'xs'        : '(max-width: 599px)'                         ,
+    'gt-xs'     : '(min-width: 600px)'                         ,
+    'sm'        : '(min-width: 600px) and (max-width: 959px)'  ,
+    'gt-sm'     : '(min-width: 960px)'                         ,
+    'md'        : '(min-width: 960px) and (max-width: 1279px)' ,
+    'gt-md'     : '(min-width: 1280px)'                        ,
+    'lg'        : '(min-width: 1280px) and (max-width: 1919px)',
+    'gt-lg'     : '(min-width: 1920px)'                        ,
+    'xl'        : '(min-width: 1920px)'                        ,
+);
+
+@mixin layout-align($suffix: '') {
+    @each $alignment in start, end {
+        [layout-align#{$suffix}^="#{$alignment} "] {
+            justify-content: flex-#{$alignment};
+        }
+
+        [layout-align#{$suffix}$=" #{$alignment}"] {
+            align-items: flex-#{$alignment};
+            align-content: flex-#{$alignment};
+        }
+    }
+
+    @each $alignment in center, space-around, space-between {
+        [layout-align#{$suffix}^="#{$alignment} "] {
+            justify-content: #{$alignment};
+        }
+    }
+
+    @each $alignment in center, stretch {
+        [layout-align#{$suffix}$=" #{$alignment}"] {
+            align-items: #{$alignment};
+            align-content: #{$alignment};
+        }
+    }
+}
+
+@mixin layout ($suffix: '') {
+    [layout#{$suffix}="row"] {
+        display: flex;
+        flex-direction: row;
+        box-sizing: border-box;
+    }
+
+    [layout#{$suffix}="column"] {
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+    }
+}
+
+@mixin flex ($suffix: '') {
+    [flex#{$suffix}=""] {
+        flex: 1 1 auto;
+        box-sizing: border-box;
+    }
+
+    @for $i from 0 through 20 {
+        $value: $i * 5;
+
+        [flex#{$suffix}="#{$value}"] {
+            flex: 1 1 $value * 1%;
+            box-sizing: border-box;
+        }
+    }
+
+    [flex#{$suffix}="33"] {
+        flex: 1 1 (100% / 3);
+        box-sizing: border-box;
+    }
+
+    [flex#{$suffix}="66"] {
+        flex: 1 1 (200% / 3);
+        box-sizing: border-box;
+    }
+}
+
+@mixin layout-wrap($suffix: '') {
+    [layout-wrap#{$suffix}] {
+        flex-wrap: wrap;
+    }
+
+    [layout-nowrap#{$suffix}] {
+        flex-wrap: nowrap;
+    }
+}
+
+@mixin layout-margin($suffix: '') {
+    [layout-margin#{$suffix}] {
+        margin: 8px;
+
+        > * {
+            margin: 8px;
+        }
+    }
+}
+
+@mixin layout-padding($suffix: '') {
+    [layout-padding#{$suffix}] {
+        padding: 8px;
+
+        > * {
+            padding: 8px;
+        }
+    }
+}
+
+@mixin flex-layout() {
+
+    @include layout();
+    @include layout-align();
+    @include layout-wrap();
+    @include layout-margin();
+    @include layout-padding();
+    @include flex();
+
+    @each $queryName, $query in $queries {
+        @media #{$query} {
+            @include layout('-#{$queryName}');
+            @include layout-align('-#{$queryName}');
+            @include layout-wrap('-#{$queryName}');
+            @include layout-margin('-#{$queryName}');
+            @include layout-padding('-#{$queryName}');
+            @include flex('-#{$queryName}');
+        }
+    }
+}

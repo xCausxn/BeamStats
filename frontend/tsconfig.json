@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "forceConsistentCasingInFileNames": true,
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "moduleResolution": "node",
+        "strictNullChecks": false,
+        "noEmitHelpers": true,
+        "module": "es2015",
+        "sourceMap": true,
+        "target": "es5",
+        "pretty": true,
+        "typeRoots": [
+            "node_modules/@types"
+        ]
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}

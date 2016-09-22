@@ -1,0 +1,22 @@
+<nav class="navbar navbar-full navbar-dark bg-primary">
+  <a class="navbar-brand">BeamStats</a>
+  <ul class="nav navbar-nav">
+    <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <a class="nav-link" routerLink="/">Home</a>
+    </li>
+    <li class="nav-item" routerLinkActive="active">
+      <a class="nav-link" routerLink="/overview" (mouseover)="preloadBundle('overview')">Overview</a>
+    </li>
+    <li class="nav-item" routerLinkActive="active" (mouseover)="preloadBundle('ranking')">
+      <div ngbDropdown>
+        <a class="nav-link" style="cursor: pointer" ngbDropdownToggle>Top 100 Ranking</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" routerLink="/ranking/viewersTotal">Total Views</a>
+          <a class="dropdown-item" routerLink="/ranking/numFollowers">Total Followers</a>
+        </div>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<router-outlet></router-outlet>

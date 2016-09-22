@@ -1,0 +1,42 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Streamer</th>
+                            <th>Partner</th>
+                            <th>Followers</th>
+                            <th>Total Views</th>
+                            <th>Social</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let channel of ranking$ | async; let i = index;">
+                            <td>{{i+1}}</td>
+                            <td>{{channel.token}}</td>
+                            <td>{{channel.partnered ? 'Partner':'Non-Partner'}}</td>
+                            <td>{{channel.numFollowers}}</td>
+                            <td>{{channel.viewersTotal}}</td>
+                            <td>
+                                <div class="btn-group" *ngIf="channel?.user?.social">
+                                    <a type="button" class="btn btn-secondary" target="_blank" [href]="channel.user.social.twitter" *ngIf="channel.user.social.twitter">Twitter</a>
+                                    <a type="button" class="btn btn-secondary" target="_blank" [href]="channel.user.social.youtube" *ngIf="channel.user.social.youtube">YouTube</a>
+                                    <a type="button" class="btn btn-secondary" target="_blank" [href]="channel.user.social.player" *ngIf="channel.user.social.player">Player.me</a>
+                                </div>
+                            </td>
+                            <td>
+                                <a class="btn" target="_blank" [href]="getChannelUrl(channel.token)" [ngClass]="{'btn-primary': channel.online, 'btn-secondary': !channel.online}">
+                                    {{channel.online ? 'Watch Stream':'View Channel'}}
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

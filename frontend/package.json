@@ -1,0 +1,50 @@
+{
+  "name": "ng2-boilerplate",
+  "version": "0.1.0",
+  "description": "A simple webpack based angular 2 boilerplate.",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --content-base dist/ --config config/webpack.common.js",
+    "build": "webpack --config config/webpack.common.js",
+    "build:prod": "webpack --config config/webpack.production.js"
+  },
+  "author": "James Birtles <unwrittenfun@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@angular/common": "^2.0.0",
+    "@angular/compiler": "2.0.0",
+    "@angular/compiler-cli": "^0.6.2",
+    "@angular/core": "2.0.0",
+    "@angular/forms": "^2.0.0",
+    "@angular/http": "^2.0.0",
+    "@angular/platform-browser": "2.0.0",
+    "@angular/platform-browser-dynamic": "2.0.0",
+    "@angular/platform-server": "^2.0.0",
+    "@angular/router": "^3.0.0",
+    "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.5",
+    "bootstrap": "^4.0.0-alpha.4",
+    "core-js": "^2.4.1",
+    "rxjs": "5.0.0-beta.12",
+    "ts-helpers": "^1.1.1",
+    "zone.js": "^0.6.23"
+  },
+  "devDependencies": {
+    "@types/core-js": "^0.9.32",
+    "@types/node": "^6.0.39",
+    "@types/systemjs": "^0.19.31",
+    "angular2-template-loader": "^0.5.0",
+    "awesome-typescript-loader": "^2.2.4",
+    "clean-webpack-plugin": "^0.1.10",
+    "codelyzer": "0.0.28",
+    "css-loader": "^0.25.0",
+    "html-webpack-plugin": "^2.22.0",
+    "node-sass": "^3.10.0",
+    "raw-loader": "^0.5.1",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
+    "tslint": "^3.15.1",
+    "typescript": "2.0.2",
+    "webpack": "2.1.0-beta.22",
+    "webpack-dev-server": "^2.1.0-beta.0"
+  }
+}

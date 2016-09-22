@@ -1,0 +1,5 @@
+@import '~bootstrap/scss/bootstrap-flex';
+@import 'layout';
+body {
+    @include flex-layout();
+}
