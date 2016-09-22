@@ -23,9 +23,9 @@
                             <td>{{channel.viewersTotal}}</td>
                             <td>
                                 <div class="btn-group" *ngIf="channel?.user?.social">
-                                    <a type="button" class="btn btn-secondary" target="_blank" [href]="channel.user.social.twitter" *ngIf="channel.user.social.twitter">Twitter</a>
-                                    <a type="button" class="btn btn-secondary" target="_blank" [href]="channel.user.social.youtube" *ngIf="channel.user.social.youtube">YouTube</a>
-                                    <a type="button" class="btn btn-secondary" target="_blank" [href]="channel.user.social.player" *ngIf="channel.user.social.player">Player.me</a>
+                                    <a class="btn btn-secondary" target="_blank" [href]="channel.user.social.twitter" *ngIf="channel.user.social.twitter">Twitter</a>
+                                    <a class="btn btn-secondary" target="_blank" [href]="channel.user.social.youtube" *ngIf="channel.user.social.youtube">YouTube</a>
+                                    <a class="btn btn-secondary" target="_blank" [href]="channel.user.social.player" *ngIf="channel.user.social.player">Player.me</a>
                                 </div>
                             </td>
                             <td>

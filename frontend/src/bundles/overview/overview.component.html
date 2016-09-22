@@ -1,1 +1,96 @@
-Overview
+<!--<div class="container-fluid">
+    <div class="row">
+        <div class="col-md">
+            <div class="card card-block">
+                1
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="card card-block">
+                1
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="card card-block">
+                1
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="card card-block">
+                1
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs">
+            <h2 class="text-xs-center">
+                The total number of registered users is... 12132122 !
+            </h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md">
+            <div class="card card-block">
+                1
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="card card-block">
+                1
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="card card-block">
+                1
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="card card-block">
+                1
+            </div></div>        
+    </div>
+</div>-->
+
+<div class="overview-container" flex layout="column" layout-wrap>
+    <div flex layout="row" layout-wrap>
+        <div flex layout="column" layout-align="center center">
+            <h2>Suspended</h2>
+            <h4><live-stat endpoint="/v1/channels" [params]="{'where': 'suspended.eq.1'}"></live-stat></h4>
+        </div>
+        <div flex layout="column" layout-align="center center">
+            <h2>Live</h2>
+            <h4><live-stat endpoint="/v1/channels" [params]="{'where': 'online.eq.1'}"></live-stat></h4>
+        </div>
+        <div flex layout="column" layout-align="center center">
+            <h2>Live Interactive</h2>
+            <h4><live-stat endpoint="/v1/channels" [params]="{'where': 'interactive.eq.1,online.eq.1'}"></live-stat></h4>
+        </div>
+        <div flex layout="column" layout-align="center center">
+            <h2>FTL Enabled</h2>
+            <h4><live-stat endpoint="/v1/channels" [params]="{'where': 'ftl.gt.-1,online.eq.1'}"></live-stat></h4>
+        </div>
+    </div>
+    <div flex layout="row" layout-wrap layout-align="center center">
+        <h2>The total number of registered users is... 
+            <live-stat endpoint="/v1/channels"></live-stat>
+             !</h2>
+    </div>
+    <div flex layout="row" layout-wrap>
+        <div flex layout="column" layout-align="center center">
+            <h2>Hosted VODs</h2>
+            <h4><live-stat endpoint="/v1/recordings"></live-stat></h4>
+        </div>
+        <div flex layout="column" layout-align="center center">
+            <h2>Partners</h2>
+            <h4><live-stat endpoint="/v1/channels" [params]="{'where': 'partnered.eq.1'}"></live-stat></h4>
+        </div>
+        <div flex layout="column" layout-align="center center">
+            <h2>Teams</h2>
+            <h4><live-stat endpoint="/v1/teams"></live-stat></h4>
+        </div>
+        <div flex layout="column" layout-align="center center">
+            <h2>Total Ingests</h2>
+            <h4><live-stat endpoint="/v1/ingests"></live-stat></h4>
+        </div>
+    </div>
+</div>

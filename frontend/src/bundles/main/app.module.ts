@@ -8,7 +8,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { routing, appRoutingProviders }  from './app/app.routing';
 
 import { AppComponent } from './app';
-import { HomeComponent } from './+home';
 
 import { BeamApiService } from './services';
 
@@ -25,8 +24,7 @@ import { BeamApiService } from './services';
         BeamApiService
     ],
     declarations: [
-        AppComponent,
-        HomeComponent
+        AppComponent
     ],
     bootstrap: [AppComponent]
 })

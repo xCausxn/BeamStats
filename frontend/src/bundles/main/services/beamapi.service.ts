@@ -24,6 +24,16 @@ export class BeamApiService {
             .map(res => res.json());
     }
 
+    getEndpoint(endpoint: string, params?: ChannelsParams) {
+        const search: URLSearchParams = new URLSearchParams();
+        if(params) {
+            for(let [index, item] of Object.entries(params)) {
+                search.set(index, item);
+            }
+        }
+        return this.http.get(`${this.beamApiRoot}${endpoint}`, {search});
+    }
+
 }
 
 export interface ChannelsParams {

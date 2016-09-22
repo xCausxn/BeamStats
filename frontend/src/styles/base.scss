@@ -1,5 +1,8 @@
 @import '~bootstrap/scss/bootstrap-flex';
 @import 'layout';
+html, body {
+    height: 100%;
+}
 body {
     @include flex-layout();
 }
