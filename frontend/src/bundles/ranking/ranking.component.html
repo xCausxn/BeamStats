@@ -1,7 +1,8 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-xs">
-            <div class="table-responsive" *ngIf="ranking$ | async">
+        <div class="col-xs" *ngIf="(ranking$ | async)?.length">
+            <h1 class="display-4 p-y-1 animated fadeInLeft">Top 100 - {{title | rankType}}</h1>
+            <div class="table-responsive animated fadeInUp">
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -30,8 +31,8 @@
                             </td>
                             <td>
                                 <a class="btn" target="_blank" [href]="getChannelUrl(channel.token)" [ngClass]="{'btn-primary': channel.online, 'btn-secondary': !channel.online}">
-                                    {{channel.online ? 'Watch Stream':'View Channel'}}
-                                </a>
+                                        {{channel.online ? 'Watch Stream':'View Channel'}}
+                                    </a>
                             </td>
                         </tr>
                     </tbody>

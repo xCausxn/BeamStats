@@ -1,0 +1,6 @@
+<input type="text" #channelTerm class="form-control" placeholder="Search..." (keyup)="channels$.next(channelTerm.value)">
+<ul class="list-group">
+  <a class="list-group-item animated fadeInUp animate-delay-{{i}}" *ngFor="let channel of channels$ | async; let i = index" [routerLink]="['../profile', channel?.token]" flex layout="row" layout-align="start center">
+      <img [src]="getAvatar(channel?.userId)"> <h4>{{channel?.token}}</h4>
+  </a>
+</ul>

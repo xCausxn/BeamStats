@@ -1,0 +1,21 @@
+img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+}
+
+h4 {
+    margin-left: 8px;
+}
+
+a {
+    color: initial;
+    &:hover {
+        background-color: darken(#FFFFFF, 5);
+        text-decoration: none;
+    }
+}
+
+input, a, a:last-child, a:first-child {
+    border-radius: 0px;
+}

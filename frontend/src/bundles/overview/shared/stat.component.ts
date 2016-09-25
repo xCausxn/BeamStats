@@ -19,6 +19,7 @@ export class StatComponent implements OnInit {
 
     @Input() endpoint: string = '/v1/channels';
     @Input() params: Object = {};
+    @Input() interval: number  = 5000;
 
     public statistic$;
 
@@ -28,7 +29,7 @@ export class StatComponent implements OnInit {
         const defaults = {
             limit: 1
         };
-        this.statistic$ = Observable.interval(5000).startWith(0)
+        this.statistic$ = Observable.interval(this.interval).startWith(0)
             .mergeMap(() => this.beamApi.getEndpoint(`${this.endpoint}`, Object.assign(defaults, this.params)))
             .map(res => res.headers.get('x-total-count') || res.json().length);
     }

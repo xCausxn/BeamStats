@@ -41,5 +41,7 @@ export interface ChannelsParams {
     limit?: number,
     where?: string,
     fields?: string,
-    order?: string
+    order?: string,
+    q?: string,
+    scope?: string
 }

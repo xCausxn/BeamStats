@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="row m-t-1">
+        <div class="col-xs-12 col-sm-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="text-xs-center">
+                        <h3 class="text-xs-center">{{(channel$ | async)?.token}}</h3>
+                        <em><strong>Joined:</strong> {{(channel$ | async)?.createdAt}}</em>
+                    </div>
+                    <hr>
+                    <div class="btn-group" flex layout="row" layout-align="center center" layout-wrap>
+                        <a class="btn btn-secondary" flex target="_blank" [href]="(channel$ | async)?.user.social?.twitter" *ngIf="(channel$ | async)?.user.social?.twitter">Twitter</a>
+                        <a class="btn btn-secondary" flex target="_blank" [href]="(channel$ | async)?.user.social?.youtube" *ngIf="(channel$ | async)?.user.social?.youtube">YouTube</a>
+                        <a class="btn btn-secondary" flex target="_blank" [href]="(channel$ | async)?.user.social?.player" *ngIf="(channel$ | async)?.user.social?.player">Player.me</a>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" flex layout="row">
+                            <span flex="50" layout="row" layout-align="start center">Followers:</span>
+                            <span flex="50" layout="row" layout-align="center center">{{(channel$ | async)?.numFollowers}}</span>
+                        </li>
+                        <li class="list-group-item" flex layout="row">
+                            <span flex="50" layout="row" layout-align="start center">Partnered: </span>
+                            <span flex="50" layout="row" layout-align="center center">{{(channel$ | async)?.partnered ? 'Yes':'No'}}</span>
+                        </li>
+                        <li class="list-group-item" flex layout="row">
+                            <span flex="50" layout="row" layout-align="start center">Interactive:</span>
+                            <span flex="50" layout="row" layout-align="center center">{{(channel$ | async)?.interactive ? 'Yes':'No'}}</span>
+                        </li>
+                        <li class="list-group-item" flex layout="row">
+                            <span flex="50" layout="row" layout-align="start center">FTL:</span> 
+                            <span flex="50" layout="row" layout-align="center center">{{(channel$ | async)?.ftl ? 'Yes':'No'}}</span>
+                        </li>
+                        <li class="list-group-item" flex layout="row">
+                            <span flex="50" layout="row" layout-align="start center">Audience: </span>
+                            <span flex="50" layout="row" layout-align="center center">{{(channel$ | async)?.audience}}</span>
+                        </li>
+                        <li class="list-group-item" flex layout="row">
+                            <span flex="50" layout="row" layout-align="start center">Level: </span>
+                            <span flex="50" layout="row" layout-align="center center">{{(channel$ | async)?.user?.level}}</span>
+                        </li>
+                        <li class="list-group-item" flex layout="row">
+                            <span flex="50" layout="row" layout-align="start center">Sparks:</span>
+                            <span flex="50" layout="row" layout-align="center center">{{(channel$ | async)?.user?.sparks}}</span>
+                        </li>
+                        <li class="list-group-item" flex layout="row">
+                            <span flex="50" layout="row" layout-align="start center">Viewers:</span>
+                            <span flex="50" layout="row" layout-align="center center">{{(channel$ | async)?.viewersCurrent}}</span>
+                        </li>
+                        <li class="list-group-item" flex layout="row">
+                            <span flex="50" layout="row" layout-align="start center">Total Views:</span> 
+                            <span flex="50" layout="row" layout-align="center center">{{(channel$ | async)?.viewersTotal}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs col-sm-8">
+            <div class="card">
+                <div class="card-header" flex layout="row" layout-wrap>
+                    <span flex>Stream: {{(channel$ | async)?.name}}</span>
+                    <span flex layout="row" layout-align="end center">Game: {{(channel$ | async)?.type?.name}}</span>
+                </div>
+                <div class="card-block">
+                    <blockquote class="card-blockquote">
+                        <p [innerHTML]="(channel$ | async)?.description"></p>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
