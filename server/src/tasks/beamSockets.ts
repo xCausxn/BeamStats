@@ -20,7 +20,7 @@ export class BeamSockets {
 
     // TODO: Make this more dynamic so more sockets can be added later
     private services = [
-        {id: 'constellation', name: 'Constellation', address: 'wss://constellation.beam.pro'},
+        {id: 'constellation', name: 'Constellation', address: 'wss://constellation.beam.pro:443'},
     ];
 
     private check$;
@@ -45,7 +45,7 @@ export class BeamSockets {
         return Observable.defer(() => fetch('https://beam.pro/api/v1/chats/endpoints'))
             .mergeMap(res => res.json())
             .map(res => {
-                return res.map((url, i) => {
+                return res.map((url) => {
                     const id = url.match(/((\w+(\d))-(.*?))\.beam\.pro/)[0];
                     return {id, name: id, address: url};
                 });
@@ -57,7 +57,7 @@ export class BeamSockets {
     checkService(service) {
         return Observable.defer(() => getWsLatency(service.address))
             .retry(3)
-            .map(res => Object.assign({}, service, {status: !!res}))
+            .map(res => Object.assign({}, service, {status: res != null}))
             .catch(() => Observable.of(Object.assign({}, service, {status: false})));
     }
 

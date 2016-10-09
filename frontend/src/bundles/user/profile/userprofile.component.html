@@ -4,8 +4,9 @@
             <div class="card">
                 <div class="card-body">
                     <div class="text-xs-center">
+                        <img class="avatar" [src]="(channel$ | async)?.user?.avatarUrl" alt="">
                         <h3 class="text-xs-center">{{(channel$ | async)?.token}}</h3>
-                        <em><strong>Joined:</strong> {{(channel$ | async)?.createdAt}}</em>
+                        <em><strong>Joined:</strong> {{(channel$ | async)?.createdAt | date:'medium'}}</em>
                     </div>
                     <hr>
                     <div class="btn-group" flex layout="row" layout-align="center center" layout-wrap>
@@ -13,6 +14,7 @@
                         <a class="btn btn-secondary" flex target="_blank" [href]="(channel$ | async)?.user.social?.youtube" *ngIf="(channel$ | async)?.user.social?.youtube">YouTube</a>
                         <a class="btn btn-secondary" flex target="_blank" [href]="(channel$ | async)?.user.social?.player" *ngIf="(channel$ | async)?.user.social?.player">Player.me</a>
                     </div>
+                    <hr>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item" flex layout="row">
                             <span flex="50" layout="row" layout-align="start center">Followers:</span>

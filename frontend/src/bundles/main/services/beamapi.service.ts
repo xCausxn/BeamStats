@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, URLSearchParams } from '@angular/http';
+import { Observable } from "rxjs/Observable";
 
 import 'rxjs/add/operator/map';
 
@@ -12,7 +13,8 @@ export class BeamApiService {
 
     getChannel(id: string | number) {
         return this.http.get(`${this.beamApiRoot}/v1/channels/${id}`)
-            .map(res => res.json());
+            .map(res => res.json() || {})
+            .catch(this.handleError);
     }
 
     getChannels(params: ChannelsParams) {
@@ -21,7 +23,8 @@ export class BeamApiService {
             search.set(index, item);
         }
         return this.http.get(`${this.beamApiRoot}/v1/channels`, {search})
-            .map(res => res.json());
+            .map(res => res.json() || [])
+            .catch(this.handleError);
     }
 
     getEndpoint(endpoint: string, params?: ChannelsParams) {
@@ -31,7 +34,14 @@ export class BeamApiService {
                 search.set(index, item);
             }
         }
-        return this.http.get(`${this.beamApiRoot}${endpoint}`, {search});
+        return this.http.get(`${this.beamApiRoot}${endpoint}`, {search})
+            .catch(this.handleError);
+    }
+
+    handleError(err: any) {
+        let errMsg = (err.message) ? err.message :
+            err.status ? `${err.status} - ${err.statusText}` : 'Server error';
+        return Observable.throw(errMsg);
     }
 
 }

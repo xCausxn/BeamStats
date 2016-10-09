@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { routing, appRoutingProviders }  from './app/app.routing';
+import { routing, appRoutingProviders }  from './app.routing';
 
 import { AppComponent } from './app';
 
-import { BeamApiService } from './services';
+import { BeamApiService, BeamStatsApiService } from './services';
+import { WebpackModuleLoaderProvider } from "./webpack-loader-module";
 
 @NgModule({
     imports: [
@@ -20,8 +19,10 @@ import { BeamApiService } from './services';
     ],
     providers: [
         Title,
+        WebpackModuleLoaderProvider,
         appRoutingProviders,
-        BeamApiService
+        BeamApiService,
+        BeamStatsApiService
     ],
     declarations: [
         AppComponent

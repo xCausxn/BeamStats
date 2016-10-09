@@ -9,7 +9,8 @@ import { BeamApiService } from '../../main/services';
 
 @Component({
     selector: 'user-profile',
-    templateUrl: './userprofile.component.html'
+    templateUrl: './userprofile.component.html',
+    styleUrls: ['./userprofile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
 
@@ -20,7 +21,8 @@ export class UserProfileComponent implements OnInit {
     ngOnInit() { 
         this.channel$ = this.r.params.map(res => res['token'])
             .mergeMap(res => this.beamApi.getChannel(res))
-            .share();
+            .publishReplay(1)
+            .refCount()
     }
 
 }

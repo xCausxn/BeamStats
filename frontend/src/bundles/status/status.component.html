@@ -1,0 +1,104 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs" *ngIf="(status$ | async)?.sites.length">
+            <h1 class="display-4 p-y-1 animated fadeInLeft">Web Services</h1>
+            <div class="table-responsive animated fadeInRight">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th class="text-xs-center">Load Time</th>
+                            <th class="text-xs-center">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let site of (status$ | async).sites">
+                            <td>{{site.name}}</td>
+                            <td class="text-xs-center">{{site.latency}}ms</td>
+                            <td class="text-xs-center">
+                                <span class="tag" [ngClass]="{'tag-success': site.status, 'tag-danger': !site.status}">
+                                    {{site.status ? 'Online':'Offline'}}
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs" *ngIf="(status$ | async)?.sockets.length">
+            <h1 class="display-4 p-y-1 animated fadeInLeft">Sockets</h1>
+            <div class="table-responsive animated fadeInRight">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Address</th>
+                        <th class="text-xs-center">Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let socket of (status$ | async).sockets">
+                        <td>{{socket.name}}</td>
+                        <td>{{socket.address}}</td>
+                        <td class="text-xs-center">
+                            <span class="tag" [ngClass]="{'tag-success': socket.status, 'tag-danger': !socket.status}">
+                                {{socket.status ? 'Online':'Offline'}}
+                            </span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs" *ngIf="(status$ | async)?.ingests.length">
+            <h1 class="display-4 p-y-1 animated fadeInLeft">Ingests</h1>
+            <div class="table-responsive animated fadeInRight">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>Address</th>
+                            <th class="text-xs-center">Protocols</th>
+                            <th class="text-xs-center" colspan="2">Latency</th>
+                            <th class="text-xs-center">Status</th>
+                        </tr>
+                        <tr>
+                            <th colspan="3"></th>
+                            <th class="text-xs-center">Server</th>
+                            <th class="text-xs-center">Browser</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="text-xs-center" *ngFor="let ingest of (status$ | async).ingests">
+                        <td class="text-xs-left">{{ingest.name}}</td>
+                        <td class="text-xs-left">{{ingest.host}}</td>
+                        <td class="text-uppercase">
+                            <span class="tag tag-info" *ngFor="let protocol of ingest.protocols" style="margin-left: 4px;">{{protocol.type}}</span>
+                        </td>
+                        <td>
+                            <latency-tag [latency]="ingest.latency"></latency-tag>
+                        </td>
+                        <td>
+                            <latency-client [ingest]="ingest.pingTest"></latency-client>
+                        </td>
+                        <td>
+                            <span class="tag" [ngClass]="{'tag-success': ingest.status, 'tag-danger': !ingest.status}">
+                                {{ingest.status ? 'Online':'Offline'}}
+                            </span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</div>

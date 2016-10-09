@@ -11,7 +11,8 @@ import { BeamApiService } from '../../main/services';
 @Component({
     selector: 'live-stat',
     template: `
-        {{statistic$ | async}}
+        <span *ngIf="(statistic$ | async)">{{statistic$ | async}}</span>
+        <i *ngIf="!(statistic$ | async)" class="zmdi zmdi-hc-spin zmdi-spinner"></i>
     `
 })
 export class StatComponent implements OnInit {

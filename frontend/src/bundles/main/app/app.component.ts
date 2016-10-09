@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { appRoutes } from './app.routing';
+import { appRoutes } from '../app.routing';
 
 @Component({
     selector: 'beamstats-app',
@@ -9,7 +9,8 @@ import { appRoutes } from './app.routing';
 export class AppComponent {
 
     preloadBundle(path: string) {
-        const bundle = appRoutes.find((item) => item.path === path);
-        if(typeof bundle.loadChildren === 'function') return bundle.loadChildren();
+        // TODO FIX LOADING
+        // const bundle = appRoutes.find((item) => item.path === path);
+        // if(typeof bundle.loadChildren === 'function') return bundle.loadChildren();
     }
 }
