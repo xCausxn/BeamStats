@@ -14,7 +14,7 @@ import { WebpackModuleLoaderProvider } from "./webpack-loader-module";
     imports: [
         BrowserModule,
         HttpModule,
-        NgbModule,
+        NgbModule.forRoot(),
         routing
     ],
     providers: [
