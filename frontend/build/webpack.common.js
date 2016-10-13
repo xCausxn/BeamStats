@@ -1,3 +1,6 @@
+require('./ts-node');
+require('ts-node/register');
+
 const path = require('path');
 const webpack = require('webpack');
 const atl = require('awesome-typescript-loader');
@@ -5,34 +8,26 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // TODO: load with node-config or something
-const config = require('./app.default');
+const config = require('../config/default');
 
-const root = path.resolve(__dirname, '..');
-const dist = path.resolve(root, 'dist');
-const tsconfig = path.resolve(root, 'tsconfig.json');
-
-const appRoot = path.resolve(root, 'src');
-const appEntry = path.resolve(appRoot, 'bundles/main.ts');
-const polyfillEntry = path.resolve(appRoot, 'bundles/polyfill.ts');
-const indexTemplate = path.resolve(appRoot, 'index.ejs');
-const globalStyles = path.resolve(appRoot, 'styles');
+const paths = require('./paths.ts');
 
 const chunkOrder = ['inline', 'polyfill', 'main'];
 
 module.exports = {
     devtool: 'source-map',
-    context: root,
+    context: paths.root,
     entry: {
-        polyfill: polyfillEntry,
-        main: appEntry
+        polyfill: paths.polyfillEntry,
+        main: paths.appEntry
     },
     output: {
-        path: dist,
+        path: paths.distRoot,
         filename: 'bundles/[name].bundle.js',
     },
     resolve: {
         extensions: ['', '.ts', '.js'],
-        root: appRoot,
+        root: paths.appRoot,
     },
     module: {
         loaders: [
@@ -43,7 +38,7 @@ module.exports = {
                         loader: 'awesome-typescript-loader',
                         query: {
                             useForkChecker: true,
-                            tsconfig: tsconfig
+                            tsconfig: paths.tsconfig
                         }
                     },
                     {
@@ -52,12 +47,12 @@ module.exports = {
                 ],
             },
             {
-                exclude: globalStyles,
+                exclude: paths.stylesRoot,
                 test: /\.scss$/,
                 loaders: ['raw-loader', 'sass-loader']
             },
             {
-                include: globalStyles,
+                include: paths.stylesRoot,
                 test: /\.scss$/,
                 loaders: ['style-loader', 'css-loader', 'sass-loader']
             },
@@ -68,11 +63,11 @@ module.exports = {
         ]
     },
     plugins: [
-        new CleanWebpackPlugin(['dist'], { root, verbose: true }),
+        new CleanWebpackPlugin(['dist'], { root: paths.root, verbose: true }),
 
         new HtmlWebpackPlugin({
             meta: config.meta,
-            template: indexTemplate,
+            template: paths.indexTemplate,
             hash: true,
             chunksSortMode: (a, b) => chunkOrder.indexOf(a.names[0]) > chunkOrder.indexOf(b.names[0]),
         }),
@@ -89,7 +84,7 @@ module.exports = {
         // See https://github.com/angular/angular/issues/11580
         new webpack.ContextReplacementPlugin(
             /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
-            appRoot
+            paths.appRoot
         ),
     ],
     devServer: {

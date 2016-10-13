@@ -13,6 +13,14 @@
         "pretty": true,
         "typeRoots": [
             "node_modules/@types"
+        ],
+        "lib": [
+            "dom",
+            "es2015",
+            "es2017.object"
+        ],
+        "types": [
+            "node"
         ]
     },
     "exclude": [
