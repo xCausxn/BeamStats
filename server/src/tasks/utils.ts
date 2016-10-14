@@ -10,7 +10,7 @@ export function getWsLatency(address: string) {
             });
             socket.on('message', (msg) => {
                 socket.close();
-                return resolve(Date.now() - start)/2;
+                return resolve((Date.now() - start)/2);
             });
             socket.on('error', (e) => {
                 return reject();
