@@ -16,8 +16,8 @@ export class LatencyTagComponent {
     constructor() {}
 
     get statusColor() {
-        if(this.latency <= 60) return 'tag tag-success';
-        if(this.latency >= 61 && this.latency <= 100) return 'tag tag-warning';
+        if(this.latency < 61) return 'tag tag-success';
+        if(this.latency >= 61 && this.latency < 101) return 'tag tag-warning';
         if(this.latency >= 101) return 'tag tag-danger';
     }
 }

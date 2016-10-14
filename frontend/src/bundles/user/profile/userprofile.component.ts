@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/share';
+import 'rxjs/add/operator/publishReplay';
 
 import { BeamApiService } from '../../main/services';
 

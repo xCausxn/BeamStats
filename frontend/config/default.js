@@ -1,6 +1,6 @@
 module.exports = {
     meta: {
-        title: 'Beam Stats',
+        title: 'ExoZone - Beam Stats',
         description: '',
     },
 };
