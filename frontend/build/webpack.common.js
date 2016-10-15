@@ -89,7 +89,13 @@ module.exports = {
     ],
     devServer: {
         port: 8080,
-        historyApiFallback: true
+        historyApiFallback: true,
+        proxy: {
+            '/api/*': {
+                target: 'http://localhost:8000/api',
+                pathRewrite: {'^/api' : ''}
+            }
+        }
     },
     node: {
         fs: 'empty',

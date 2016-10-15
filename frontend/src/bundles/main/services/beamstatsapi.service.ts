@@ -9,7 +9,7 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class BeamStatsApiService {
 
-    private beamStatsApiRoot: string = 'http://localhost:8000/api';
+    private beamStatsApiRoot: string = '/api';
 
     constructor(private http: Http) {
     }

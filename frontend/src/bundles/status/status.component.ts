@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { BeamStatsApiService } from "../main/services";
-
+import { orderBy } from 'lodash';
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/observable/interval';
@@ -24,9 +24,16 @@ export class StatusComponent implements OnInit {
     ngOnInit() { 
         this.status$ = Observable.interval(20000).startWith(0)
             .mergeMap(() => this.bstatsApi.getStats())
-            .do((res: {ingests: any[]}) => res.ingests = res.ingests.sort((a, b) => a['name'].localeCompare(b['name'])))
             .publishReplay(1)
-            .refCount()
+            .refCount();
     }
 
+}
+
+
+@Pipe({ name: 'orderBy', pure: false })
+export class OrderByPipe implements PipeTransform {
+    transform(array: any[], keys: string[], ) {
+        return orderBy(array, keys);
+    }
 }

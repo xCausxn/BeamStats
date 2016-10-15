@@ -12,7 +12,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let site of (status$ | async).sites">
+                        <tr *ngFor="let site of (status$ | async).sites | orderBy:['name']">
                             <td>{{site.name}}</td>
                             <td class="text-xs-center">{{site.latency}}ms</td>
                             <td class="text-xs-center">
@@ -40,7 +40,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr *ngFor="let socket of (status$ | async).sockets">
+                    <tr *ngFor="let socket of (status$ | async).sockets | orderBy:['name']">
                         <td>{{socket.name}}</td>
                         <td>{{socket.address}}</td>
                         <td class="text-xs-center">
@@ -76,7 +76,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <tr class="text-xs-center" *ngFor="let ingest of (status$ | async).ingests">
+                    <tr class="text-xs-center" *ngFor="let ingest of (status$ | async).ingests | orderBy:['latencyClient']">
                         <td class="text-xs-left">{{ingest.name}}</td>
                         <td class="text-xs-left">{{ingest.host}}</td>
                         <td class="text-uppercase">
@@ -86,7 +86,7 @@
                             <latency-tag [latency]="ingest.latency"></latency-tag>
                         </td>
                         <td>
-                            <latency-client [ingest]="ingest.pingTest"></latency-client>
+                            <latency-client [ingest]="ingest.pingTest" (onChange)="ingest.latencyClient = $event.value"></latency-client>
                         </td>
                         <td>
                             <span class="tag" [ngClass]="{'tag-success': ingest.status, 'tag-danger': !ingest.status}">
