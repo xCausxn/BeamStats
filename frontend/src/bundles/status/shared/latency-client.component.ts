@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
 @Component({
@@ -10,6 +10,7 @@ import { BehaviorSubject } from "rxjs/BehaviorSubject";
 export class LatencyClientComponent implements OnInit {
 
     @Input() ingest: string;
+    @Output() onChange = new EventEmitter();
 
     public latency$ = new BehaviorSubject<number>(-1);
     private pings = [];
@@ -28,7 +29,9 @@ export class LatencyClientComponent implements OnInit {
 
     pingWS() {
         if(this.pings.length === this.maxPings) {
-            this.latency$.next(this.avgLatency);
+            const avg = this.avgLatency;
+            this.latency$.next(avg);
+            this.onChange.emit({value: avg});
             return this.socket.close();
         }
         let start = Date.now();
