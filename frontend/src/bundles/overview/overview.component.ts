@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'beamstats-overview',
+    selector: 'bs-overview',
     templateUrl: './overview.component.html',
     styleUrls: ['./overview.component.scss']
 })

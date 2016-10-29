@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
 @Component({
-    selector: 'beamstats-ranking',
+    selector: 'bs-ranking',
     templateUrl: './ranking.component.html',
     styleUrls: ['./ranking.component.scss']
 })

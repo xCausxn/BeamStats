@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { appRoutes } from '../app.routing';
 
 @Component({
-    selector: 'beamstats-app',
+    selector: 'bs-app',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
 })

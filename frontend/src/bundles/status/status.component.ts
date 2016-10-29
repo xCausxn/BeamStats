@@ -11,7 +11,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/startWith';
 
 @Component({
-    selector: 'beamstats-status',
+    selector: 'bs-status',
     templateUrl: 'status.component.html',
     styleUrls: ['status.component.scss']
 })

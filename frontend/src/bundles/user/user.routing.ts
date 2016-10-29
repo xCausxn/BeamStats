@@ -1,7 +1,6 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { UserComponent } from './user.component'
 import { UserSearchComponent } from './search';
 import { UserProfileComponent } from './profile';
 
